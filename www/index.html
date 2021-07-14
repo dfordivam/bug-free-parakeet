@@ -7,8 +7,19 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
   </head>
   <body>
-    <div id="vis"></div>
+<div>
+<p>
+This is a plot of Tc and PostTc (bak) times, of each module when compiling cabal.
+The Y axis is mod number (+1000) and X is time from start of compile.
+To see the corresponding module name checkout <a href="https://github.com/dfordivam/bug-free-parakeet/blob/main/all_time_data/no_idinfo_update_40s_run">this file</a>
+</p>
 
+<p>
+The (A) has no IdInfo update, (B) has the update. A finishes in 41s, B takes 50s
+</p>
+</div>
+
+    <div id="vis"></div>
     <script type="text/javascript">
       var yourVlSpec =
 {
