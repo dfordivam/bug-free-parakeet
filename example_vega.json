@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A simple bar chart with ranged data (aka Gantt Chart).",
+  "data": {
+    "values": [
+      {"task": "A", "type": "tc",  "start": 1, "end": 3},
+      {"task": "A", "type": "bak", "start": 3, "end": 5},
+      {"task": "A2", "type": "tc2",  "start": 1, "end": 3.2},
+      {"task": "A2", "type": "bak2", "start": 3.2, "end": 5.2},
+      {"task": "B", "type": "tc",  "start": 3, "end": 4},
+      {"task": "C", "type": "tc",  "start": 8, "end": 10},
+      {"task": "B", "type": "bak", "start": 5, "end": 6},
+      {"task": "C", "type": "bak", "start": 12, "end": 14}
+    ]
+  },
+  "mark": "bar",
+  "encoding": {
+    "y": {"field": "task", "type": "ordinal"},
+    "x": {"field": "start", "type": "quantitative"},
+    "x2": {"field": "end"},
+    "color": {
+      "field": "type",
+      "type": "nominal",
+      "title": "Response",
+      "scale": {
+        "domain": ["tc", "bak", "tc2", "bak2"],
+        "range": ["#94c6da", "#f3a583", "#1770ab", "#c30d24", "#cccccc"],
+        "type": "ordinal"
+      }
+    }
+  }
+}
