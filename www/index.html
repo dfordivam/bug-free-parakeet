@@ -1,18 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Perf Gantt chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+  </head>
+  <body>
+    <div id="vis"></div>
+
+    <script type="text/javascript">
+      var yourVlSpec =
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Gantt Chart",
-  "data": {
-    "values": [
-      {"mod": "A", "step": "tc",  "start": 1, "end": 3},
-      {"mod": "A", "step": "bak", "start": 3, "end": 5},
-      {"mod": "A2", "step": "tc2",  "start": 1, "end": 3.2},
-      {"mod": "A2", "step": "bak2", "start": 3.2, "end": 5.2},
-      {"mod": "B", "step": "tc",  "start": 3, "end": 4},
-      {"mod": "C", "step": "tc",  "start": 8, "end": 10},
-      {"mod": "B", "step": "bak", "start": 5, "end": 6},
-      {"mod": "C", "step": "bak", "start": 12, "end": 14}
-    ]
-  },
+  "data": {"url": "data.json"},
   "mark": "bar",
   "encoding": {
     "y": {"field": "mod", "type": "ordinal"},
@@ -29,4 +31,8 @@
       }
     }
   }
-}
+};
+      vegaEmbed('#vis', yourVlSpec);
+    </script>
+  </body>
+</html>
