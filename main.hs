@@ -56,19 +56,18 @@ makeVals ref new = concat (map g (Map.toList ref))
     (_, (newStartTime, _), _) = new Map.! 1
     g :: (Int , ParsedVal) -> [DataValue]
     g (i, (mod, (rTcS, rTcE), (rBkS, rBkE))) =
-      [ DataValue mref tc (refT rTcS) (refT rTcE)
-      , DataValue mref bak (refT rBkS) (refT rBkE)
-      , DataValue mnew tc (newT nTcS) (newT nTcE)
-      , DataValue mnew bak (newT nBkS) (newT nBkE)
+      [ DataValue mref "tc" (refT rTcS) (refT rTcE)
+      , DataValue mref "bak" (refT rBkS) (refT rBkE)
+      , DataValue mnew "tc2" (newT nTcS) (newT nTcE)
+      , DataValue mnew "bak2" (newT nBkS) (newT nBkE)
       ]
       where
-        tc = "tc"
-        bak = "bak"
-        refT t = (timeOfDayToTime t) - (timeOfDayToTime refStartTime)
-        newT t = (timeOfDayToTime t) - (timeOfDayToTime newStartTime)
-        modN = mod ++ "[" ++ show i ++ "]"
-        mref = modN ++ "(Ref)"
-        mnew = modN ++ "(New)"
+        refT t = max 0 ((timeOfDayToTime t) - (timeOfDayToTime refStartTime))
+        newT t = max 0 ((timeOfDayToTime t) - (timeOfDayToTime newStartTime))
+        -- modN = mod ++ "[" ++ show i ++ "]"
+        modN = show (1000 + i)
+        mref = modN ++ "(A)"
+        mnew = modN ++ "(B)"
         (_, (nTcS, nTcE), (nBkS, nBkE)) = new Map.! i
 
 instance ToJSON DataValue where
